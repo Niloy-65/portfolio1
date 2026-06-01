@@ -35,64 +35,80 @@ body {
 }
 
 /* ===========================
-   BLOBS — keeps blur effect, mobile optimized
+   FIXED PRELOADER
+   =========================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  z-index: 99999;
+  transition: opacity .6s ease, visibility .6s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Logo Fixes */
+.loader-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.preloader-img {
+  width: 120px;
+  height: auto;
+  filter: invert(1) brightness(2);
+  /* Ensures browser reserves space immediately */
+  display: block; 
+}
+
+/* Progress Bar */
+.loader-bar {
+  width: 220px;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.loader-progress {
+  height: 100%;
+  width: 0%;
+  background: var(--accent); /* Simplified gradient for performance */
+  transition: width .9s cubic-bezier(.25,.8,.25,1);
+}
+
+.preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ===========================
+   FIXED BLOBS (Smoother)
    =========================== */
 .background-blobs { 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; 
-  z-index: -1;
-  pointer-events: none;
-  /* Isolate blobs into their own layer so blur doesn't repaint the whole page */
-  isolation: isolate;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    z-index: -1; pointer-events: none; 
 }
 
 .blob { 
-  position: absolute; 
-  border-radius: 50%; 
-  opacity: 0.25;
-  /* Use transform3d to push to GPU composite layer */
-  transform: translate3d(0, 0, 0);
-  /* will-change ONLY when animating — remove if blobs don't move */
+    position: absolute; 
+    border-radius: 50%; 
+    filter: blur(80px); 
+    opacity: 0.2; 
+    /* THIS IS THE FIX: Forces GPU usage to stop lag */
+    transform: translate3d(0, 0, 0);
+    will-change: transform; 
 }
 
-.blob-1 { 
-  width: 500px;
-  height: 500px;
-  background: var(--accent);
-  top: -150px;
-  left: -150px;
-  /* Reduced blur — 80px was overkill, 60px looks same on screen */
-  filter: blur(60px);
-}
-
-.blob-2 { 
-  width: 400px;
-  height: 400px;
-  background: var(--accent);
-  bottom: -100px;
-  right: -100px;
-  filter: blur(60px);
-}
-
-/* Mobile: reduce blur radius significantly */
-@media (max-width: 768px) {
-  .blob-1, .blob-2 {
-    filter: blur(30px);
-    opacity: 0.18;
-    /* Shrink blobs on mobile to reduce paint area */
-  }
-  .blob-1 {
-    width: 300px;
-    height: 300px;
-  }
-  .blob-2 {
-    width: 250px;
-    height: 250px;
-  }
-}
+.blob-1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
+.blob-2 { width: 300px; height: 300px; background: var(--accent); bottom: -50px; right: -50px; }
 
 /* ===========================
    NAVIGATION & CURSOR
@@ -3420,4 +3436,3 @@ section { padding: 100px 5%; }
 [data-theme="light"] .portfolio-link {
     color: #ffffff;
 }
-
