@@ -1,33 +1,40 @@
-// 1. Preloader — starts immediately on DOMContentLoaded, doesn't wait for all resources
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof gsap !== 'undefined') {
-    // Fake a fast progress fill so user sees activity immediately
     gsap.to(".loader-progress", { width: "70%", duration: 0.6, ease: "power1.out" });
   }
-});
 
-window.addEventListener("load", () => {
-  if (typeof gsap !== 'undefined') {
-    const tl = gsap.timeline();
-    tl.to(".loader-progress", { width: "100%", duration: 0.4, ease: "power2.out" })
-      .to(".preloader", { 
-        y: "-100%", 
-        duration: 0.8, 
-        ease: "power4.inOut",
-        onComplete: () => {
-          document.getElementById('preloader').style.display = 'none'; // Free memory
-        }
-      })
-      .from(".reveal-text", { y: 50, opacity: 0, stagger: 0.1, duration: 0.8 }, "-=0.3");
-  } else {
-    // Fallback if GSAP hasn't loaded
-    const bar = document.querySelector(".loader-progress");
-    const pre = document.getElementById("preloader");
-    if (bar) bar.style.width = "100%";
-    setTimeout(() => {
-      if (pre) { pre.style.opacity = "0"; pre.style.visibility = "hidden"; }
-    }, 600);
-  }
+  const hidePreloader = () => {
+    if (typeof gsap !== 'undefined') {
+      const tl = gsap.timeline();
+      tl.to(".loader-progress", { width: "100%", duration: 0.4, ease: "power2.out" })
+        .to(".preloader", {
+          y: "-100%",
+          duration: 0.8,
+          ease: "power4.inOut",
+          onComplete: () => {
+            document.getElementById('preloader').style.display = 'none';
+          }
+        })
+        .from(".reveal-text", { y: 50, opacity: 0, stagger: 0.1, duration: 0.8 }, "-=0.3");
+    } else {
+      const bar = document.querySelector(".loader-progress");
+      const pre = document.getElementById("preloader");
+      if (bar) bar.style.width = "100%";
+      setTimeout(() => {
+        if (pre) { pre.style.opacity = "0"; pre.style.visibility = "hidden"; }
+      }, 600);
+    }
+  };
+
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    hidePreloader();
+  };
+
+  window.addEventListener("load", finish);
+  setTimeout(finish, 2500); // safety net — never lets mobile users get stuck waiting on slow assets
 });
 
 // 2. Cursor
