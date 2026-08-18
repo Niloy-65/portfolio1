@@ -1840,6 +1840,677 @@ section { padding: 100px 5%; }
     50% { background: #f43f5e; box-shadow: 0 0 8px #f43f5e; } /* Red Flash */
 }
 
+
+
+
+
+/* =========================================================================
+   NEW PROJECT CARD ANIMATIONS
+   Paste this whole block at the END of your existing portfolio.css file.
+   These style the new project cards you added:
+   Portfolio v1, FIFA Schedule, Work Details, Admit Card Portal, TaskDeck,
+   Lineup Builder, Experience, Profile Link, DYD Project, DIIT Work
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. LAPTOP SHOWCASE  (Portfolio v1 – #00d4ff)
+   ------------------------------------------------------------------------- */
+.laptop-showcase {
+    width: 220px;
+}
+
+.laptop-screen {
+    width: 100%;
+    height: 150px;
+    background: #0d1b2a;
+    border: 2px solid rgba(0, 212, 255, 0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    animation: lapFloat 4s ease-in-out infinite;
+}
+
+.lap-navbar {
+    height: 18px;
+    background: #16213e;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 10px;
+    flex-shrink: 0;
+}
+
+.lap-navbar::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00d4ff;
+    box-shadow: 12px 0 0 rgba(255,255,255,0.15), 24px 0 0 rgba(255,255,255,0.15);
+}
+
+.lap-hero {
+    height: 50px;
+    margin: 10px;
+    border-radius: 6px;
+    background-size: 200% 100%;
+    animation: lapShimmer 3s linear infinite;
+}
+
+.lap-content {
+    display: flex;
+    gap: 6px;
+    padding: 0 10px 10px;
+    flex: 1;
+}
+
+.lap-box {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 4px;
+    animation: lapBoxPulse 2.5s ease-in-out infinite;
+}
+
+.lap-box:nth-child(2) { animation-delay: 0.3s; }
+.lap-box:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes lapFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes lapShimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+@keyframes lapBoxPulse {
+    0%, 100% { opacity: 0.6; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.05); }
+}
+
+/* -------------------------------------------------------------------------
+   2. FIXTURE CARD  (FIFA Schedule – #e31937)
+   ------------------------------------------------------------------------- */
+.fixture-card {
+    width: 170px;
+    background: #14141f;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(227, 25, 55, 0.2);
+}
+
+.fixture-header {
+    height: 28px;
+}
+
+.fixture-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.fixture-row {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.fixture-row.active {
+    background: rgba(227, 25, 55, 0.12);
+    border-color: rgba(227, 25, 55, 0.5);
+    animation: fixtureGlow 2.5s ease-in-out infinite;
+}
+
+.fixture-medal {
+    align-self: center;
+    margin-top: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f8d347, #e3a91f);
+    color: #4a2c00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 14px rgba(248, 211, 71, 0.4);
+    animation: medalBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes fixtureGlow {
+    0%, 100% { box-shadow: 0 0 0 rgba(227, 25, 55, 0); }
+    50% { box-shadow: 0 0 12px rgba(227, 25, 55, 0.5); }
+}
+
+@keyframes medalBounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(8deg); }
+}
+
+/* -------------------------------------------------------------------------
+   3. WORK TIMELINE  (Work Details – #6366f1)
+   ------------------------------------------------------------------------- */
+.work-timeline {
+    width: 200px;
+    height: 170px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-bar {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 50%;
+    height: 3px;
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2a2a3d;
+    border: 2px solid #6366f1;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.timeline-dot:nth-child(1) { left: 20px; }
+.timeline-dot:nth-child(2) { left: 50%; margin-left: -6px; }
+.timeline-dot:nth-child(3) { right: 20px; }
+
+.timeline-dot.active {
+    background: #6366f1;
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.8);
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+.work-card {
+    position: absolute;
+    bottom: 20px;
+    width: 110px;
+    background: #1a1a2e;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    animation: workCardFloat 3.5s ease-in-out infinite;
+}
+
+.work-title {
+    height: 6px;
+    width: 70%;
+    background: #6366f1;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
+.work-time {
+    height: 4px;
+    width: 45%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+@keyframes dotPulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.3); }
+}
+
+@keyframes workCardFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* -------------------------------------------------------------------------
+   4. CARD PORTAL  (Admit Card Portal – #8b5cf6)
+   ------------------------------------------------------------------------- */
+.card-portal {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 900px;
+}
+
+.admit-card {
+    width: 150px;
+    height: 100px;
+    background: linear-gradient(145deg, #241b3a, #14101f);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    grid-template-rows: auto auto;
+    gap: 6px 10px;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .admit-card {
+    transform: rotateY(-8deg) rotateX(4deg) translateY(-6px);
+}
+
+.card-photo {
+    grid-row: 1 / 3;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #3a2d5c;
+    border: 1px solid #8b5cf6;
+}
+
+.card-text {
+    height: 6px;
+    border-radius: 3px;
+    align-self: center;
+}
+
+.card-barcode {
+    grid-column: 2;
+    height: 10px;
+    background: repeating-linear-gradient(
+        90deg,
+        #fff 0px, #fff 2px,
+        transparent 2px, transparent 4px
+    );
+    opacity: 0.7;
+    border-radius: 2px;
+}
+
+.card-seal {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+    animation: sealPulse 2s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* -------------------------------------------------------------------------
+   5. MOBILE DEVICE  (TaskDeck Android – #10b981)
+   ------------------------------------------------------------------------- */
+.mobile-device {
+    width: 110px;
+    height: 190px;
+    background: #0b1f17;
+    border: 2px solid #10b981;
+    border-radius: 18px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.mobile-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 12px;
+    background: #061410;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 5;
+}
+
+.mobile-app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    gap: 8px;
+    position: relative;
+}
+
+.app-header {
+    height: 34px;
+    margin: 0 8px;
+    border-radius: 6px;
+}
+
+.app-task {
+    height: 22px;
+    margin: 0 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.app-task.active {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.5);
+    animation: taskCheck 3s ease-in-out infinite;
+}
+
+.app-fab {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: #06281c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.5);
+    animation: fabPop 2.5s ease-in-out infinite;
+}
+
+@keyframes taskCheck {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+}
+
+@keyframes fabPop {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(90deg); }
+}
+
+/* -------------------------------------------------------------------------
+   6. FIELD BUILDER  (Football Lineup Builder – #ec4899)
+   ------------------------------------------------------------------------- */
+.field-builder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pitch {
+    position: absolute;
+    inset: 15px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.pitch::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.pitch::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.player-icon {
+    position: absolute;
+    font-size: 1.4rem;
+    color: #ec4899;
+    text-shadow: 0 0 10px rgba(236, 72, 153, 0.8);
+    z-index: 3;
+    animation: playerMove 5s ease-in-out infinite;
+}
+
+.lineup-info {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 8px;
+    background: rgba(236, 72, 153, 0.15);
+    border: 1px solid rgba(236, 72, 153, 0.4);
+    border-radius: 10px;
+    z-index: 3;
+}
+
+@keyframes playerMove {
+    0%   { top: 30%; left: 30%; }
+    25%  { top: 20%; left: 60%; }
+    50%  { top: 55%; left: 65%; }
+    75%  { top: 60%; left: 25%; }
+    100% { top: 30%; left: 30%; }
+}
+
+/* -------------------------------------------------------------------------
+   7. EXPERIENCE SHOWCASE  (#14b8a6)
+   ------------------------------------------------------------------------- */
+.exp-showcase {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.exp-card {
+    width: 55px;
+    height: 90px;
+    background: #101c1b;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    animation: expFloat 3.5s ease-in-out infinite;
+}
+
+.exp-card:nth-child(1) { animation-delay: 0s; }
+.exp-card:nth-child(2) { animation-delay: 0.4s; transform: translateY(-10px); }
+.exp-card:nth-child(3) { animation-delay: 0.8s; }
+
+@keyframes expFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.exp-card:nth-child(2) {
+    animation-name: expFloatMid;
+}
+
+@keyframes expFloatMid {
+    0%, 100% { transform: translateY(-10px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* -------------------------------------------------------------------------
+   8. LINK HUB  (Profile Link – #d946ef)
+   ------------------------------------------------------------------------- */
+.link-hub {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.link-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.5);
+    animation: avatarGlow 2.5s ease-in-out infinite;
+    margin-bottom: 6px;
+}
+
+.link-item {
+    width: 130px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(217, 70, 239, 0.25);
+    border-radius: 20px;
+    opacity: 0;
+    animation: linkFadeIn 0.5s ease forwards, linkFloat 3s ease-in-out infinite;
+}
+
+.link-item:nth-child(2) { animation-delay: 0.1s, 0s; }
+.link-item:nth-child(3) { animation-delay: 0.25s, 0.3s; }
+.link-item:nth-child(4) { animation-delay: 0.4s, 0.6s; }
+.link-item:nth-child(5) { animation-delay: 0.55s, 0.9s; }
+
+@keyframes avatarGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); }
+    50% { box-shadow: 0 0 26px rgba(217, 70, 239, 0.7); }
+}
+
+@keyframes linkFadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes linkFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* -------------------------------------------------------------------------
+   9. PROJECT PREVIEW  (DYD Project – #a855f7)
+   ------------------------------------------------------------------------- */
+.project-preview {
+    width: 190px;
+    background: #1a1030;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: previewFloat 4s ease-in-out infinite;
+}
+
+.prev-header {
+    height: 26px;
+}
+
+.prev-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.prev-item {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+}
+
+.prev-item:nth-child(2) { width: 70%; }
+
+.prev-badge {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+}
+
+@keyframes previewFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+/* -------------------------------------------------------------------------
+   10. EDUCATION CARD  (DIIT Work – #06b6d4)
+   ------------------------------------------------------------------------- */
+.education-card {
+    width: 180px;
+    background: #0c1c22;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: eduFloat 4s ease-in-out infinite;
+}
+
+.edu-header {
+    height: 55px;
+}
+
+.edu-badge {
+    position: absolute;
+    top: 35px;
+    left: 12px;
+    background: #06b6d4;
+    color: #00232b;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(6, 182, 212, 0.4);
+}
+
+.edu-items {
+    padding: 20px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edu-item {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+}
+
+.edu-item:nth-child(2) { width: 60%; }
+
+@keyframes eduFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* -------------------------------------------------------------------------
+   MOBILE RESPONSIVE TWEAKS for the new mockups
+   ------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+    .laptop-showcase,
+    .fixture-card,
+    .work-timeline,
+    .project-preview,
+    .education-card {
+        transform: scale(0.9);
+    }
+    .exp-showcase {
+        gap: 10px;
+    }
+    .link-item {
+        width: 110px;
+    }
+}
 /* ----------------------------------------- End of Ticket Generator Card ----------------------------------------- */
 
 
