@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (portfolioItems.length > 0) {
         const initialItems = 9; 
-        const loadItems = 6;    
+        const loadItems = 9;    
         let visibleCount = initialItems;
         let currentFilter = 'all';
 
